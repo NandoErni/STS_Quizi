@@ -55,7 +55,7 @@ def auf_wie_viele_arten_kann_man_die_Folge_anordnen(folge):
     k = 1
     for x in dic:
         k *= math.factorial(dic[x])
-    return math.factorial(n) / k
+    return math.floor(math.factorial(n) / k)
 
 
 def computer_program(input_vektor, prozent_der_testlaeufe):
@@ -70,7 +70,7 @@ def computer_program(input_vektor, prozent_der_testlaeufe):
 def sicherheitskopie1(anzahlKopien, anzahlServer):
     n = anzahlKopien + anzahlServer - 1
     k = anzahlKopien
-    return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
+    return math.floor(math.factorial(n) / (math.factorial(k) * math.factorial(n - k)))
 
 
 def sicherheitskopie2(anzahlKopien, anzahlServer):
@@ -79,14 +79,24 @@ def sicherheitskopie2(anzahlKopien, anzahlServer):
 
 
 def zahlen_mit_ziffer(stellen):
-    return 10 ** stellen - 9 ** stellen
+    alleMöglichenZahlen = 9 * 10**(stellen-1)
+    alleMöglichenZahlenOhneEineZiffer = 8 * 9**(stellen-1)
+
+    return alleMöglichenZahlen - alleMöglichenZahlenOhneEineZiffer
 
 
 # Beispiele:
-print_potenz_menge(['1', '10', 'a', 't'])
-print(potenz_menge_anzahl_elemente(22))
-print(auf_wie_viele_arten_kann_man_die_Folge_anordnen([-2, 3, 2, 3, 0, 0]))
-print(computer_program([np.arange(-1, 3, 1), np.arange(-3, 5, 1), np.arange(-2, 6, 1), np.arange(0, 3, 1)], 0.8))
-print(sicherheitskopie1(10, 10))
+print_potenz_menge(['{{4}}', 'a', 'd', 's'])
+print(potenz_menge_anzahl_elemente(15))
+print(auf_wie_viele_arten_kann_man_die_Folge_anordnen([-3,-3,0,1,-3,2]))
+print(computer_program(
+    [
+        np.arange(-2, 3, 1),
+        np.arange(-1, 4, 1),
+        np.arange(-3, 3, 1),
+        np.arange(-2, 4, 1),
+        np.arange(-3, 5, 1)
+    ], 0.6))
+print(sicherheitskopie1(7, 10))
 print(sicherheitskopie2(11, 10))
-print(zahlen_mit_ziffer(7))
+print(zahlen_mit_ziffer(6))
